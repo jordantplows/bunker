@@ -4,13 +4,19 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "start": "vite",
+    "start": "vite preview --port ${PORT:-4173} --host",
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
-  "devDependencies": {
+  "dependencies": {
+    "front-matter": "^4.0.2",
+    "markdown-it": "^15.0.1",
     "typescript": "^7.0.2",
     "vite": "^8.2.2"
+  },
+  "devDependencies": {
+    "@types/markdown-it": "^14.2.0",
+    "@types/node": "^26.4.0"
   }
 }
