@@ -165,10 +165,156 @@
     font-weight: 500;
   }
 
+  .lab-demo {
+    margin: 40px -4px 48px;
+  }
+  .terminal {
+    background: #1C1B18;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+  }
+  .terminal-bar {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 12px 16px;
+    background: rgba(255,255,255,0.06);
+  }
+  .terminal-dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+  }
+  .terminal-title {
+    flex: 1;
+    text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.3);
+    margin-right: 40px;
+  }
+  .terminal-body {
+    padding: 20px 24px 24px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13.5px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.75);
+    overflow-x: auto;
+  }
+  .terminal-line {
+    white-space: pre;
+  }
+  .terminal-output .terminal-line {
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+  }
+  .terminal-output .terminal-line.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .prompt {
+    color: rgba(255,255,255,0.4);
+  }
+  .cursor {
+    display: inline-block;
+    width: 8px;
+    height: 15px;
+    background: rgba(255,255,255,0.6);
+    vertical-align: text-bottom;
+    margin-left: 1px;
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+  .terminal-muted {
+    color: rgba(255,255,255,0.35);
+  }
+  .terminal-green {
+    color: #7ECE7E;
+  }
+  .terminal-body strong {
+    color: rgba(255,255,255,0.95);
+    font-weight: 500;
+  }
+  .terminal-link {
+    color: rgba(255,255,255,0.5);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .experiments {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 8px 0 48px;
+  }
+  .experiment-card {
+    padding: 22px 26px;
+    background: rgba(0,0,0,0.025);
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  .experiment-card:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    border-color: rgba(0,0,0,0.1);
+  }
+  .experiment-card h3 {
+    font-family: 'Inter Tight', Helvetica, sans-serif;
+    font-weight: 800;
+    font-size: 15px;
+    letter-spacing: 0.01em;
+    color: #1C1B18;
+    margin-bottom: 8px;
+  }
+  .experiment-card p {
+    font-size: 15.5px;
+    line-height: 1.6;
+    color: #6A6864;
+    margin-bottom: 0;
+  }
+
+  .analogy {
+    margin: 48px 0;
+    padding: 40px 0;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+  .analogy-line {
+    font-family: 'Inter Tight', Helvetica, sans-serif;
+    font-weight: 800;
+    font-size: clamp(20px, 3.5vw, 26px);
+    line-height: 1.65;
+    color: #B5B2AD;
+    letter-spacing: -0.02em;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .analogy-line.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .analogy-line.highlight {
+    color: #1C1B18;
+  }
+  .analogy-line strong {
+    font-weight: 900;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     h1 { transition: none; }
     .source-toggle .spearhead { transition: none; }
     .source-body { transition: none; }
+    .terminal-output .terminal-line { opacity: 1; transform: none; transition: none; }
+    .analogy-line { opacity: 1; transform: none; transition: none; }
+    .experiment-card { transition: none; }
   }
 </style>
 </head>
@@ -236,8 +382,57 @@
     </div>
   </div>
 
+  <p>We think the fastest way to get there is to put a lab on every laptop. The same shift that made compute accessible — neoclouds like Lambda Labs and RunPod letting anyone rent GPUs by the hour — is now possible for biology. Upload a molecule, pick an assay, get results. No institutional affiliation. No six-figure equipment. Just the experiment.</p>
+
+  <div class="lab-demo">
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span class="terminal-dot"></span>
+        <span class="terminal-dot"></span>
+        <span class="terminal-dot"></span>
+        <span class="terminal-title">bunker</span>
+      </div>
+      <div class="terminal-body">
+        <div class="terminal-line cmd-line"><span class="prompt">$ </span><span class="cmd" data-text="bunker run --target EGFR --compound erlotinib"></span><span class="cursor"></span></div>
+        <div class="terminal-output">
+          <div class="terminal-line"><span class="terminal-muted">⟶ Allocating wet-lab resources...</span></div>
+          <div class="terminal-line"><span class="terminal-muted">⟶ Running binding assay simulation...</span></div>
+          <div class="terminal-line"><span class="terminal-muted">⟶ Analyzing results...</span></div>
+          <div class="terminal-line"> </div>
+          <div class="terminal-line"><span class="terminal-green">✓</span> Binding affinity: <strong>−9.2 kcal/mol</strong></div>
+          <div class="terminal-line"><span class="terminal-green">✓</span> Ki predicted: <strong>0.18 nM</strong></div>
+          <div class="terminal-line"><span class="terminal-green">✓</span> Full report → <span class="terminal-link">results/egfr-erlotinib.pdf</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="experiments">
+    <div class="experiment-card">
+      <h3>Binding affinity</h3>
+      <p>Test how strongly a compound binds to a disease target. Upload a molecular structure, select a protein, get binding predictions in minutes.</p>
+    </div>
+    <div class="experiment-card">
+      <h3>Gene expression</h3>
+      <p>Map how a drug changes which genes are active. Submit expression data, identify differentially expressed genes, trace downstream effects.</p>
+    </div>
+    <div class="experiment-card">
+      <h3>Toxicity screening</h3>
+      <p>Predict safety before synthesis. Screen compounds against fifty toxicity endpoints before they ever touch a cell.</p>
+    </div>
+  </div>
+
+  <div class="analogy">
+    <div class="analogy-line">Lambda Labs gave everyone a <strong>GPU</strong>.</div>
+    <div class="analogy-line">RunPod gave everyone a <strong>cluster</strong>.</div>
+    <div class="analogy-line highlight">Bunker gives everyone a <strong>lab</strong>.</div>
+  </div>
+
   <p>The default human lifespan should be a healthy hundred years. Not because we slow down aging, but because we remove the things that kill people before they get there. That is what Bunker is for.</p>
 </main>
+<footer>
+  <span>&copy; Bunker Research</span>
+</footer>
 <script type="module" src="/src/main.ts"></script>
 </body>
 </html>
