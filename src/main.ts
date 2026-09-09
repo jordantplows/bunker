@@ -1,8 +1,9 @@
-const h1 = document.querySelector("h1") as HTMLElement | null;
 const reducedMotion = window.matchMedia(
   "(prefers-reduced-motion: reduce)"
 ).matches;
 
+// H1 scroll fade
+const h1 = document.querySelector("h1") as HTMLElement | null;
 if (h1 && !reducedMotion) {
   const dark = [0x1c, 0x1b, 0x18] as const;
   const bg = [0xf5, 0xf4, 0xf0] as const;
@@ -18,6 +19,7 @@ if (h1 && !reducedMotion) {
   window.addEventListener("scroll", update, { passive: true });
 }
 
+// Source toggles
 document.querySelectorAll<HTMLElement>(".source").forEach((source) => {
   const toggle = source.querySelector<HTMLButtonElement>(".source-toggle");
   const body = source.querySelector<HTMLElement>(".source-body");
@@ -34,6 +36,26 @@ document.querySelectorAll<HTMLElement>(".source").forEach((source) => {
   });
 });
 
+// Scroll reveal
+const reveals = document.querySelectorAll<HTMLElement>(".reveal");
+if (reducedMotion) {
+  reveals.forEach((el) => el.classList.add("visible"));
+} else {
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+  reveals.forEach((el) => revealObserver.observe(el));
+}
+
+// Terminal typing animation
 const labDemo = document.querySelector(".lab-demo");
 if (labDemo) {
   const cmdEl = labDemo.querySelector(".cmd") as HTMLElement;
@@ -87,27 +109,5 @@ if (labDemo) {
 
       setTimeout(typeNext, 500);
     }
-  }
-}
-
-const analogy = document.querySelector(".analogy");
-if (analogy) {
-  const lines = analogy.querySelectorAll<HTMLElement>(".analogy-line");
-
-  if (reducedMotion) {
-    lines.forEach((l) => l.classList.add("visible"));
-  } else {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          observer.disconnect();
-          lines.forEach((line, i) => {
-            setTimeout(() => line.classList.add("visible"), i * 350);
-          });
-        }
-      },
-      { threshold: 0.5 }
-    );
-    observer.observe(analogy);
   }
 }

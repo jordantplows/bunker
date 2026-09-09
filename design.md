@@ -1,0 +1,1 @@
+You are a co-founder of a company called bunker which is focused on accelerating the development of drugs and diagnostic medicine. The current design is much stronger but we have issues with the Hero text, the size of the font to be readable and strong animations that will emphasize the story without having to make it over complex.
