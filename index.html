@@ -7,12 +7,14 @@
 <title>Bunker</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Inter+Tight:wght@800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
     background: #F5F4F0;
+    background-image: radial-gradient(circle, rgba(0,0,0,0.07) 1px, transparent 1px);
+    background-size: 20px 20px;
     color: #4A4844;
     font-family: 'Newsreader', Georgia, serif;
     font-size: 19.5px;
@@ -28,18 +30,20 @@
   .hero {
     min-height: 50vh;
     display: flex;
-    align-items: flex-end;
-    padding: 0 24px 32px;
-    max-width: 620px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 24px;
+    max-width: 820px;
     margin: 0 auto;
   }
   h1 {
     font-family: 'Inter Tight', Helvetica, sans-serif;
-    font-weight: 800;
-    font-size: clamp(56px, 10vw, 120px);
-    line-height: 1.06;
-    letter-spacing: -0.035em;
+    font-weight: 900;
+    font-size: clamp(60px, 10vw, 128px);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
     color: #1C1B18;
+    text-align: center;
     transition: color 0.05s linear;
   }
   p {
@@ -57,19 +61,182 @@
   a:hover {
     color: #8A8780;
   }
+
+  .source {
+    margin-top: -12px;
+    margin-bottom: 28px;
+  }
+  .source-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.35);
+    padding: 4px 0;
+    transition: color 0.15s;
+  }
+  .source-toggle:hover {
+    color: rgba(0,0,0,0.6);
+  }
+  .source-toggle .spearhead {
+    display: inline-block;
+    transition: transform 0.25s ease;
+    font-size: 9px;
+    line-height: 1;
+  }
+  .source.open .spearhead {
+    transform: rotate(180deg);
+  }
+  .source-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.3s ease;
+    opacity: 0;
+  }
+  .source.open .source-body {
+    opacity: 1;
+  }
+  .source-content {
+    margin-top: 16px;
+    padding: 24px 28px;
+    background: rgba(0,0,0,0.03);
+    border-left: 2px solid rgba(0,0,0,0.1);
+    font-size: 16px;
+    line-height: 1.7;
+    color: #5A5854;
+  }
+  .source-content h3 {
+    font-family: 'Inter Tight', Helvetica, sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: #1C1B18;
+    margin-bottom: 12px;
+  }
+  .source-content h4 {
+    font-family: 'Inter Tight', Helvetica, sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    color: #1C1B18;
+    margin-top: 20px;
+    margin-bottom: 8px;
+  }
+  .source-content p {
+    margin-bottom: 14px;
+    font-size: 16px;
+  }
+  .source-content ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 14px;
+  }
+  .source-content li {
+    padding-left: 16px;
+    position: relative;
+    margin-bottom: 6px;
+    font-size: 16px;
+  }
+  .source-content li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: rgba(0,0,0,0.25);
+  }
+  .source-content ol {
+    padding-left: 20px;
+    margin-bottom: 14px;
+  }
+  .source-content ol li {
+    padding-left: 4px;
+  }
+  .source-content ol li::before {
+    display: none;
+  }
+  .source-content strong {
+    color: #1C1B18;
+    font-weight: 500;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     h1 { transition: none; }
+    .source-toggle .spearhead { transition: none; }
+    .source-body { transition: none; }
   }
 </style>
 </head>
 <body>
 <div class="hero">
-  <h1>Live to 100</h1>
+  <h1>Nobody dies</h1>
 </div>
 <main>
-  <p>Bunker is an AI biotech lab built around a single question: what would it take to make a healthy hundred-year life the default outcome, not the exception?</p>
-  <p>We use machine learning to map how diseases start, spread, and entrench themselves at the molecular level — building causal models detailed enough to reveal where each disease is weakest. Then we design interventions aimed at those precise points, with the goal of prevention and cure rather than management.</p>
-  <p>The premise is simple. Most disease is not random. It follows patterns — genetic, metabolic, environmental — that can be mapped, modeled, and intercepted before they do irreversible damage. The tools to do this at the scale and speed required are only now becoming available.</p>
+  <p>Most people die of diseases we already understand well enough to prevent. Heart disease, cancer, neurodegeneration — these are not mysteries. They are engineering problems with known mechanisms and identifiable weak points. The reason people still die of them is not biology. It is that no one has committed to actually finishing them off.</p>
+
+  <p>Bunker is an AI biotech lab that exists to do exactly that. We use machine learning to build complete causal models of how diseases start, progress, and kill — mapping every pathway from first mutation to final organ failure. Then we design interventions that strike at the root mechanism, not the symptoms. The goal is not to help people live with disease. It is to eliminate the disease so there is nothing to live with.</p>
+
+  <div class="source" data-source="causal-mapping">
+    <button class="source-toggle" aria-expanded="false">
+      <span class="spearhead">&#x25BE;</span> What we mean by causal mapping
+    </button>
+    <div class="source-body">
+      <div class="source-content">
+        <h3>What we mean by causal mapping</h3>
+        <p>A causal map is not a diagram. It is a computational model of how a disease initiates, progresses, defends itself, and can be interrupted.</p>
+        <h4>Beyond correlation</h4>
+        <p>Most disease research identifies associations. Gene X is correlated with outcome Y. Biomarker Z predicts progression. These are useful, but they do not tell you where to intervene.</p>
+        <p>A causal map answers a different question: <strong>if we change this variable, what happens downstream?</strong> That requires modeling the mechanism, not just measuring the association.</p>
+        <h4>How we build them</h4>
+        <p>Each map starts from three data layers:</p>
+        <ul>
+          <li><strong>Genomic</strong> — driver mutations, regulatory networks, expression profiles</li>
+          <li><strong>Proteomic</strong> — signaling cascades, protein interactions, post-translational modifications</li>
+          <li><strong>Tissue-level</strong> — spatial organization, microenvironment dynamics, immune landscape</li>
+        </ul>
+        <p>These layers are integrated into a single computational model that can be queried counterfactually: what happens if we block this pathway? What if we activate this receptor?</p>
+        <h4>Why publish them</h4>
+        <p>Our maps are published as they are built. This is not altruism — it is methodology. Eradication requires that claims be verifiable and mechanisms be reproducible. A proprietary map that cannot be challenged is a liability, not an asset.</p>
+      </div>
+    </div>
+  </div>
+
+  <p>This is not a long-term research agenda. The science already exists. Computational biology can now map disease mechanisms at a resolution that was impossible twenty years ago. Precision therapeutics can target those mechanisms with specificity that blunt instruments never could. What has been missing is the will to treat eradication — not management — as the objective. We think managing a disease forever when you could eliminate it is a form of learned helplessness dressed up as pragmatism.</p>
+
+  <div class="source" data-source="why-eradication">
+    <button class="source-toggle" aria-expanded="false">
+      <span class="spearhead">&#x25BE;</span> Why eradication, not management
+    </button>
+    <div class="source-body">
+      <div class="source-content">
+        <h3>Why eradication, not management</h3>
+        <p>Medicine has largely accepted that most diseases will be managed, not eliminated. We think this is a failure of ambition, not biology.</p>
+        <h4>The management trap</h4>
+        <p>When a disease is managed — controlled but never cured — every patient who will ever contract it becomes a perpetual revenue stream. The incentive structure rewards maintenance. Treatment protocols optimize for tolerability over termination.</p>
+        <p>This is not a conspiracy. It is the natural consequence of a system where chronic management is more profitable than a one-time cure.</p>
+        <h4>Smallpox was not a miracle</h4>
+        <p>Smallpox eradication is treated as an unrepeatable anomaly. But the method was straightforward:</p>
+        <ol>
+          <li><strong>Map</strong> the disease — its reservoirs, transmission routes, and vulnerabilities</li>
+          <li><strong>Intervene</strong> at the causal pathway — vaccination that produced durable immunity</li>
+          <li><strong>Surveil</strong> until incidence reached zero — ring vaccination and case tracking</li>
+          <li><strong>Hold</strong> until eradication was certified — years of zero cases</li>
+        </ol>
+        <p>The method worked. It can work again.</p>
+        <h4>What has changed</h4>
+        <p><strong>Computational biology</strong> can map disease mechanisms at a resolution that was impossible twenty years ago. We can identify causal pathways, not just correlations.</p>
+        <p><strong>Precision therapeutics</strong> can target those pathways with specificity that blunt instruments like broad-spectrum antivirals cannot match.</p>
+        <p>The question is not whether eradication is possible. It is whether anyone is willing to commit to it as the objective. We are.</p>
+      </div>
+    </div>
+  </div>
+
+  <p>The default human lifespan should be a healthy hundred years. Not because we slow down aging, but because we remove the things that kill people before they get there. That is what Bunker is for.</p>
 </main>
 <script type="module" src="/src/main.ts"></script>
 </body>

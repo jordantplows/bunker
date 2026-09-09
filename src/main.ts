@@ -13,3 +13,19 @@ if (h1 && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
 
   window.addEventListener("scroll", update, { passive: true });
 }
+
+document.querySelectorAll<HTMLElement>(".source").forEach((source) => {
+  const toggle = source.querySelector<HTMLButtonElement>(".source-toggle");
+  const body = source.querySelector<HTMLElement>(".source-body");
+  if (!toggle || !body) return;
+
+  toggle.addEventListener("click", () => {
+    const isOpen = source.classList.toggle("open");
+    toggle.setAttribute("aria-expanded", String(isOpen));
+    if (isOpen) {
+      body.style.maxHeight = body.scrollHeight + "px";
+    } else {
+      body.style.maxHeight = "0";
+    }
+  });
+});
