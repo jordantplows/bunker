@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Browse and deploy AI models on the Bunker platform.">
+<title>AI Models — Bunker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F0EDE0;
+    --text: rgba(30,28,22,0.72);
+    --text-bright: #1A1814;
+    --text-dim: rgba(30,28,22,0.38);
+    --forest: #2D5A27;
+    --forest-dim: rgba(45,90,39,0.5);
+    --rule: rgba(30,28,22,0.18);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--bg);
+    background-image:
+      radial-gradient(ellipse at 20% 15%, rgba(200,190,165,0.25) 0%, transparent 50%),
+      radial-gradient(ellipse at 75% 80%, rgba(190,182,158,0.2) 0%, transparent 45%),
+      radial-gradient(ellipse at 50% 50%, rgba(210,203,180,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse at 10% 90%, rgba(185,178,155,0.18) 0%, transparent 40%),
+      radial-gradient(ellipse at 85% 20%, rgba(195,188,165,0.2) 0%, transparent 35%),
+      repeating-linear-gradient(0deg, transparent, transparent 120px, rgba(180,172,148,0.04) 120px, rgba(180,172,148,0.04) 121px),
+      repeating-linear-gradient(87deg, transparent, transparent 200px, rgba(170,162,138,0.03) 200px, rgba(170,162,138,0.03) 201px);
+    color: var(--text);
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 19px;
+    line-height: 1.9;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  a {
+    color: var(--text-bright);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    transition: border-color 0.15s, color 0.15s;
+  }
+  a:hover { color: var(--text-bright); border-color: var(--text-bright); }
+
+  /* ── Navbar ── */
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 24px 32px;
+    border-bottom: 2px solid var(--text-bright);
+  }
+  .navbar-brand {
+    font-family: 'Inter Tight', Helvetica, sans-serif;
+    font-weight: 900;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-bright);
+    border-bottom: none;
+  }
+  .navbar-links { display: flex; gap: 24px; list-style: none; }
+  .navbar-links a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--forest);
+    border-bottom: none;
+  }
+  .navbar-links a:hover { color: var(--text-bright); }
+  .navbar-links .active { color: var(--text-bright); }
+
+  /* ── Content ── */
+  .content {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .hero {
+    padding: 80px 0 48px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .hero h1 {
+    font-family: 'Inter Tight', Helvetica, sans-serif;
+    font-weight: 900;
+    font-size: clamp(36px, 7vw, 72px);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    color: var(--text-bright);
+  }
+  .hero .subtitle {
+    margin-top: 20px;
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--text);
+  }
+
+  /* ── Filter tabs ── */
+  .filters {
+    display: flex;
+    gap: 20px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--rule);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .filters button {
+    background: none;
+    border: none;
+    font: inherit;
+    color: var(--text-dim);
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.15s;
+  }
+  .filters button:hover { color: var(--text-bright); }
+  .filters button.active { color: var(--text-bright); }
+
+  /* ── Model cards ── */
+  .model-list { padding: 0; }
+
+  .model-card {
+    padding: 32px 0;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: start;
+  }
+
+  .model-info h2 {
+    font-family: 'Inter Tight', Helvetica, sans-serif;
+    font-weight: 900;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    color: var(--text-bright);
+    line-height: 1.2;
+  }
+
+  .model-meta {
+    display: flex;
+    gap: 16px;
+    margin-top: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  .model-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border: 1px solid var(--rule);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .model-tag.new {
+    border-color: var(--forest-dim);
+    color: var(--forest);
+  }
+
+  .model-desc {
+    margin-top: 12px;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text);
+  }
+
+  .deploy-btn {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    background: var(--forest);
+    color: var(--bg);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background 0.15s;
+    white-space: nowrap;
+    margin-top: 4px;
+  }
+  .deploy-btn:hover { background: var(--text-bright); }
+
+  /* ── Footer ── */
+  .colophon {
+    padding: 56px 0 40px;
+    border-top: 1px solid var(--rule);
+  }
+  .colophon a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--forest);
+    border-bottom-color: var(--forest-dim);
+  }
+  .colophon a:hover { color: var(--text-bright); }
+
+  .footer-text {
+    padding: 0 0 56px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--forest-dim);
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 520px) {
+    .model-card { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a class="navbar-brand" href="/">Bunker</a>
+  <ul class="navbar-links">
+    <li><a href="/ai-models" class="active">AI Models</a></li>
+  </ul>
+</nav>
+
+<div class="content">
+
+  <header class="hero">
+    <h1 class="reveal">AI Models</h1>
+    <p class="subtitle reveal">Browse our latest models and deploy them on the Bunker platform. Built for drug discovery, protein folding, genomics, and beyond.</p>
+  </header>
+
+  <div class="filters reveal">
+    <button class="active" data-filter="all">All</button>
+    <button data-filter="genomics">Genomics</button>
+    <button data-filter="protein">Protein</button>
+    <button data-filter="drug-discovery">Drug Discovery</button>
+    <button data-filter="imaging">Imaging</button>
+  </div>
+
+  <div class="model-list" id="model-list">
+
+    <div class="model-card reveal" data-category="protein">
+      <div class="model-info">
+        <h2>BunkerFold-3</h2>
+        <div class="model-meta">
+          <span class="model-tag new">New</span>
+          <span>Protein</span>
+          <span>1.2B params</span>
+        </div>
+        <p class="model-desc">Third-generation protein structure prediction. Predicts 3D coordinates from amino acid sequence with sub-angstrom accuracy on CASP15 targets.</p>
+      </div>
+      <button class="deploy-btn">Deploy</button>
+    </div>
+
+    <div class="model-card reveal" data-category="genomics">
+      <div class="model-info">
+        <h2>GenoScan-LLM</h2>
+        <div class="model-meta">
+          <span class="model-tag new">New</span>
+          <span>Genomics</span>
+          <span>800M params</span>
+        </div>
+        <p class="model-desc">Foundation model for whole-genome variant calling. Trained on 200K+ genomes to flag pathogenic variants with clinical-grade sensitivity.</p>
+      </div>
+      <button class="deploy-btn">Deploy</button>
+    </div>
+
+    <div class="model-card reveal" data-category="drug-discovery">
+      <div class="model-info">
+        <h2>MolGen-7</h2>
+        <div class="model-meta">
+          <span>Drug Discovery</span>
+          <span>3.4B params</span>
+        </div>
+        <p class="model-desc">Generative molecular design. Produces novel small molecules optimized for binding affinity, ADMET properties, and synthetic accessibility.</p>
+      </div>
+      <button class="deploy-btn">Deploy</button>
+    </div>
+
+    <div class="model-card reveal" data-category="imaging">
+      <div class="model-info">
+        <h2>CryoNet</h2>
+        <div class="model-meta">
+          <span>Imaging</span>
+          <span>540M params</span>
+        </div>
+        <p class="model-desc">Cryo-EM reconstruction model. Resolves 3D density maps from single-particle micrographs at near-atomic resolution with 10x fewer particles.</p>
+      </div>
+      <button class="deploy-btn">Deploy</button>
+    </div>
+
+    <div class="model-card reveal" data-category="drug-discovery">
+      <div class="model-info">
+        <h2>ToxPredict-v2</h2>
+        <div class="model-meta">
+          <span>Drug Discovery</span>
+          <span>280M params</span>
+        </div>
+        <p class="model-desc">Multi-endpoint toxicity prediction. Screens compound libraries for hepatotoxicity, cardiotoxicity, and mutagenicity before synthesis.</p>
+      </div>
+      <button class="deploy-btn">Deploy</button>
+    </div>
+
+    <div class="model-card reveal" data-category="genomics">
+      <div class="model-info">
+        <h2>EpiMark</h2>
+        <div class="model-meta">
+          <span>Genomics</span>
+          <span>420M params</span>
+        </div>
+        <p class="model-desc">Epigenomic annotation engine. Predicts histone modifications, methylation state, and chromatin accessibility from sequence context alone.</p>
+      </div>
+      <button class="deploy-btn">Deploy</button>
+    </div>
+
+  </div>
+
+  <div class="colophon">
+    <a href="mailto:hello@bunkerbio.com">hello@bunkerbio.com</a>
+  </div>
+
+  <div class="footer-text">
+    <span>&copy; Bunker Research</span>
+  </div>
+
+</div>
+
+<script>
+  // Scroll reveal
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const reveals = document.querySelectorAll(".reveal");
+  if (reducedMotion) {
+    reveals.forEach(el => el.classList.add("visible"));
+  } else {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); obs.unobserve(e.target); } });
+    }, { threshold: 0.15 });
+    reveals.forEach(el => obs.observe(el));
+  }
+
+  // Filter tabs
+  const buttons = document.querySelectorAll(".filters button");
+  const cards = document.querySelectorAll(".model-card");
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      buttons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const filter = btn.dataset.filter;
+      cards.forEach(card => {
+        if (filter === "all" || card.dataset.category === filter) {
+          card.style.display = "";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>

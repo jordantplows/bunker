@@ -2,14 +2,6 @@ Title: Nobody dies early
 
 Live to a healthy 100 years of age.
 
-
-Bunkers current mission accelerate science with autonomous labs and exploratory robotics. Robots that aren’t just completing a prompt for a specific task or drug discovery but also conducting experiments beyond the initial prompt. 
-
-This is critical for the acceleration of science and medicine. If we are going to extend all of human life to the age of 100. 
-
-Science has to be fully autonomous and now we need the largest manhattan project on planet earth giving people access to the most powerful interfaces. 
-
-
 Subtitle: Imagine of Disease didn’t exist
 
 The mission for Bunker bio is to eradicate all disease on planet earth. However, assuming we 
