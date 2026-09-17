@@ -1,7 +1,27 @@
+Title: Nobody dies early 
 
-We have many diseases and need a way to give anyone with a laptop the ability to run lab qualitiy experiments. Similar to how neoclouds work Like Lambda Labs Run pod and more. We believe that the fastest way to accelerate innovation in drug discovery is giving everyone with a laptop access to a real lab. 
+Bunker is an AI Biotech Longevity Company focused on extending all of humanity to a guaranteed healthy 100 years of age.
 
 
-### NOTES ####
+We are first starting with a deep focus on autonomous labs and exploratory robotics. Robots that aren’t just completing a prompt for a specific task or drug discovery but also conducting experiments beyond the initial prompt. 
 
-we want to design the website in a way that tells the story behind this without just text, run a few examples and we will test locally
+This is critical for the acceleration of science and medicine. If we are going to extend all of human life to the age of 100. 
+
+Science has to be fully autonomous and now we need the largest manhattan project on planet earth giving people access to the most powerful interfaces. 
+
+
+
+Subtitle: Imagine of Disease didn’t exist
+
+The mission for Bunker bio is to eradicate all disease on planet earth. However, assuming we 
+can do this on our own. It would be extremely arrogant. This will be a global effort, to defend our species, remove the terms “disease” or “illness” from the vocabulary of an entire generation and accelerate science.
+
+
+Subtitle: Beyond the Labs
+
+We are not an autonomous lab geared towards lab workers and universities. Under strict guidance, adherence and governance from the United States government and adjoining bodies, we attempt to democratize science. This means that the direction of Bunker doesn’t just seek to unlock biological possibilities. 
+
+Bunker seeks to enable discoveries across all modalities of science that were previously locked up to those with a degree, inside a university or with money. Advancing progress in drug discovery, quantum mechanics, semi-conductors and robotics.
+
+
+For inquiries email hello@bunkerbio.com
