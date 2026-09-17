@@ -15,6 +15,7 @@ mount({
   <div class="model-list">
 
     <div class="model-card reveal">
+      <div class="research-preview-tag">Research Preview</div>
       <div class="model-header">
         <div class="model-info">
           <h2>BunkerFold-3</h2>
@@ -49,7 +50,7 @@ time: 1.8s</div>
         </div>
       </div>
       <div class="model-actions">
-        <button type="button" class="btn btn-primary" data-action="deploy">Deploy Model</button>
+        <button type="button" class="btn btn-primary" id="deploy-btn">Deploy Model</button>
         <a href="/ai-models/docs" class="btn btn-secondary">View Docs</a>
       </div>
     </div>
@@ -61,17 +62,65 @@ time: 1.8s</div>
     <p class="coming-soon-text">We're actively training the next generation of Bunker models across genomics, drug discovery, and medical imaging. Upcoming releases include whole-genome variant calling, generative molecular design, cryo-EM reconstruction, and multi-endpoint toxicity prediction.</p>
     <p class="coming-soon-text">If you're working on a problem that needs a model we haven't built yet, we want to hear about it.</p>
     <a class="coming-soon-cta" href="mailto:hello@bunkerbio.com">Get in touch</a>
+  </div>
+
+  <div class="deploy-overlay" id="deploy-overlay">
+    <div class="deploy-modal">
+      <div class="deploy-modal-header">
+        <h2>Request access to BunkerFold-3</h2>
+        <button type="button" class="deploy-close" id="deploy-close" aria-label="Close">&times;</button>
+      </div>
+      <p class="deploy-modal-desc">BunkerFold-3 is currently in research preview. Fill out the form below and our team will reach out with deployment details.</p>
+      <form class="deploy-form" id="deploy-form">
+        <label class="deploy-label">
+          <span class="deploy-label-text">Name</span>
+          <input type="text" name="name" class="deploy-input" required placeholder="Your name">
+        </label>
+        <label class="deploy-label">
+          <span class="deploy-label-text">Email</span>
+          <input type="email" name="email" class="deploy-input" required placeholder="you@company.com">
+        </label>
+        <label class="deploy-label">
+          <span class="deploy-label-text">Organization</span>
+          <input type="text" name="org" class="deploy-input" placeholder="Company or institution">
+        </label>
+        <label class="deploy-label">
+          <span class="deploy-label-text">Use case</span>
+          <textarea name="use_case" class="deploy-textarea" rows="3" placeholder="Briefly describe what you're building or researching"></textarea>
+        </label>
+        <button type="submit" class="btn btn-primary deploy-submit">Request Access</button>
+      </form>
+      <div class="deploy-success" id="deploy-success">
+        <div class="deploy-success-icon">&#10003;</div>
+        <h3>Request sent</h3>
+        <p>We'll be in touch within 48 hours.</p>
+      </div>
+    </div>
   </div>`,
 });
 
-document.querySelectorAll<HTMLButtonElement>("[data-action]").forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const orig = btn.textContent;
-    btn.textContent = "Coming soon";
-    btn.disabled = true;
-    setTimeout(() => {
-      btn.textContent = orig;
-      btn.disabled = false;
-    }, 2000);
-  });
+const overlay = document.getElementById("deploy-overlay")!;
+const form = document.getElementById("deploy-form") as HTMLFormElement;
+const success = document.getElementById("deploy-success")!;
+
+document.getElementById("deploy-btn")!.addEventListener("click", () => {
+  overlay.classList.add("open");
+});
+
+document.getElementById("deploy-close")!.addEventListener("click", () => {
+  overlay.classList.remove("open");
+});
+
+overlay.addEventListener("click", (e) => {
+  if (e.target === overlay) overlay.classList.remove("open");
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") overlay.classList.remove("open");
+});
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  form.style.display = "none";
+  success.style.display = "block";
 });
