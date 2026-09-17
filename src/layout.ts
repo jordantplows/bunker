@@ -36,10 +36,10 @@ export function footer(): string {
       </ul>
     </div>
   </div>
-</footer>
-<div class="footer-bottom">
-  <span>&copy; 2026 Bunker Longevity, Inc. All rights reserved.</span>
-</div>`;
+  <div class="footer-bottom">
+    <span>&copy; 2026 Bunker Longevity, Inc. All rights reserved.</span>
+  </div>
+</footer>`;
 }
 
 export function reveal(): void {

@@ -3,7 +3,7 @@ const CSS = `
   --bg: #FAFAFA;
   --text: rgba(17,17,17,0.6);
   --text-bright: #111;
-  --text-dim: rgba(17,17,17,0.32);
+  --text-dim: rgba(17,17,17,0.50);
   --forest: #2D5A27;
   --forest-dim: rgba(45,90,39,0.45);
   --rule: rgba(17,17,17,0.1);
@@ -30,6 +30,7 @@ a {
   transition: border-color 0.15s, color 0.15s;
 }
 a:hover { color: var(--text-bright); border-color: var(--text-bright); }
+:focus-visible { outline: 2px solid var(--forest); outline-offset: 2px; }
 
 /* ── Navbar ── */
 .navbar {
@@ -379,6 +380,7 @@ a:hover { color: var(--text-bright); border-color: var(--text-bright); }
   display: flex;
   gap: 12px;
   margin-top: 20px;
+  flex-wrap: wrap;
 }
 .btn {
   font-family: 'IBM Plex Mono', monospace;
@@ -532,7 +534,7 @@ a:hover { color: var(--text-bright); border-color: var(--text-bright); }
 `;
 
 const FONT_URL =
-  "https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@400;500&display=swap";
+  "https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400&family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@400;500;700&display=swap";
 
 export function injectStyles(): void {
   const head = document.head;
