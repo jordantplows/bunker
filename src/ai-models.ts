@@ -13,11 +13,11 @@ mount({
   </header>
 
   <div class="filters reveal">
-    <button class="active" data-filter="all">All</button>
-    <button data-filter="protein">Protein</button>
-    <button data-filter="genomics">Genomics</button>
-    <button data-filter="drug-discovery">Drug Discovery</button>
-    <button data-filter="imaging">Imaging</button>
+    <button type="button" class="active" data-filter="all">All</button>
+    <button type="button" data-filter="protein">Protein</button>
+    <button type="button" data-filter="genomics">Genomics</button>
+    <button type="button" data-filter="drug-discovery">Drug Discovery</button>
+    <button type="button" data-filter="imaging">Imaging</button>
   </div>
 
   <div class="model-count" id="model-count">Showing 6 models</div>
@@ -60,8 +60,8 @@ time: 1.8s</div>
         </div>
       </div>
       <div class="model-actions">
-        <button class="btn btn-primary">Deploy Model</button>
-        <button class="btn btn-secondary">View Docs</button>
+        <button type="button" class="btn btn-primary" data-action="deploy">Deploy Model</button>
+        <button type="button" class="btn btn-secondary" data-action="docs">View Docs</button>
       </div>
     </div>
 
@@ -103,8 +103,8 @@ rs16942 — benign</div>
         </div>
       </div>
       <div class="model-actions">
-        <button class="btn btn-primary">Deploy Model</button>
-        <button class="btn btn-secondary">View Docs</button>
+        <button type="button" class="btn btn-primary" data-action="deploy">Deploy Model</button>
+        <button type="button" class="btn btn-secondary" data-action="docs">View Docs</button>
       </div>
     </div>
 
@@ -149,8 +149,8 @@ constraints:
         </div>
       </div>
       <div class="model-actions">
-        <button class="btn btn-primary">Deploy Model</button>
-        <button class="btn btn-secondary">View Docs</button>
+        <button type="button" class="btn btn-primary" data-action="deploy">Deploy Model</button>
+        <button type="button" class="btn btn-secondary" data-action="docs">View Docs</button>
       </div>
     </div>
 
@@ -191,8 +191,8 @@ particles_used: 11,820</div>
         </div>
       </div>
       <div class="model-actions">
-        <button class="btn btn-primary">Deploy Model</button>
-        <button class="btn btn-secondary">View Docs</button>
+        <button type="button" class="btn btn-primary" data-action="deploy">Deploy Model</button>
+        <button type="button" class="btn btn-secondary" data-action="docs">View Docs</button>
       </div>
     </div>
 
@@ -235,8 +235,8 @@ flags: hepatotoxicity</div>
         </div>
       </div>
       <div class="model-actions">
-        <button class="btn btn-primary">Deploy Model</button>
-        <button class="btn btn-secondary">View Docs</button>
+        <button type="button" class="btn btn-primary" data-action="deploy">Deploy Model</button>
+        <button type="button" class="btn btn-secondary" data-action="docs">View Docs</button>
       </div>
     </div>
 
@@ -278,8 +278,8 @@ state: active_regulatory</div>
         </div>
       </div>
       <div class="model-actions">
-        <button class="btn btn-primary">Deploy Model</button>
-        <button class="btn btn-secondary">View Docs</button>
+        <button type="button" class="btn btn-primary" data-action="deploy">Deploy Model</button>
+        <button type="button" class="btn btn-secondary" data-action="docs">View Docs</button>
       </div>
     </div>
 
@@ -311,5 +311,17 @@ buttons.forEach((btn) => {
     buttons.forEach((b) => b.classList.remove("active"));
     btn.classList.add("active");
     updateFilter(btn.dataset.filter);
+  });
+});
+
+document.querySelectorAll<HTMLButtonElement>("[data-action]").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const orig = btn.textContent;
+    btn.textContent = "Coming soon";
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.textContent = orig;
+      btn.disabled = false;
+    }, 2000);
   });
 });

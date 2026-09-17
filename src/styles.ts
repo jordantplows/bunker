@@ -406,6 +406,7 @@ a:hover { color: var(--text-bright); border-color: var(--text-bright); }
   border: 1px solid var(--rule);
 }
 .btn-secondary:hover { border-color: var(--text-bright); background: rgba(17,17,17,0.03); }
+.btn:disabled { opacity: 0.5; cursor: default; transform: none; }
 
 /* ── 404 ── */
 .four-oh-four {
@@ -503,7 +504,8 @@ a:hover { color: var(--text-bright); border-color: var(--text-bright); }
 }
 .footer-col a:hover { color: var(--forest); }
 .footer-bottom {
-  padding: 24px 0 48px;
+  padding: 24px 0 0;
+  margin-top: 40px;
   font-family: 'IBM Plex Mono', monospace;
   font-size: 11px;
   font-weight: 400;

@@ -6,7 +6,7 @@ export function navbar(activePath?: string, maxWidth = 640): string {
   return `<nav class="navbar" style="max-width:${maxWidth}px">
   <a class="navbar-brand" href="/">Bunker</a>
   <ul class="navbar-links">
-    <li><a href="/ai-models"${aiActive}>AI Models</a></li>
+    <li><a href="/ai-models"${aiActive}>Bunker Models</a></li>
   </ul>
 </nav>`;
 }
@@ -92,10 +92,10 @@ export function mount(opts: MountOptions): void {
 
   document.body.innerHTML =
     navbar(opts.activePath, mw) +
-    `<div class="content" style="max-width:${mw}px">` +
+    `<main class="content" style="max-width:${mw}px">` +
     opts.content +
     footer() +
-    `</div>`;
+    `</main>`;
 
   reveal();
 }
