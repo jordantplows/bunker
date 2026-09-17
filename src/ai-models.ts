@@ -8,7 +8,7 @@ mount({
   maxWidth: 740,
   content: `
   <header class="hero">
-    <h1 class="reveal">AI Models</h1>
+    <h1 class="reveal">Bunker Models</h1>
     <p class="subtitle reveal">Models built by Bunker for the life sciences. Each model ships with an API, documentation, and examples you can run today.</p>
   </header>
 
