@@ -408,6 +408,36 @@ a:hover { color: var(--text-bright); border-color: var(--text-bright); }
 .btn-secondary:hover { border-color: var(--text-bright); background: rgba(17,17,17,0.03); }
 .btn:disabled { opacity: 0.5; cursor: default; transform: none; }
 
+/* ── Coming soon ── */
+.coming-soon-section {
+  padding: 64px 0;
+  border-top: 1px solid var(--rule);
+}
+.coming-soon-heading {
+  font-family: 'Inter Tight', Helvetica, sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  letter-spacing: -0.02em;
+  color: var(--text-bright);
+  margin-bottom: 20px;
+}
+.coming-soon-text {
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+.coming-soon-text:last-of-type { margin-bottom: 24px; }
+.coming-soon-cta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--forest);
+  border-bottom: 1px solid var(--forest-dim);
+}
+.coming-soon-cta:hover { color: var(--text-bright); border-color: var(--text-bright); }
+
 /* ── 404 ── */
 .four-oh-four {
   flex: 1;
