@@ -3,7 +3,7 @@ import blogPlugin from "./vite-plugin-blog.ts";
 import pagesPlugin from "./vite-plugin-pages.ts";
 
 export default defineConfig({
-  appType: "custom",
+  appType: "mpa",
   plugins: [pagesPlugin(), blogPlugin()],
   build: {
     outDir: "build",

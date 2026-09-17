@@ -1,4 +1,6 @@
-import type { Plugin, Connect } from "vite";
+import type { Plugin, Connect, UserConfig } from "vite";
+import fs from "node:fs";
+import path from "node:path";
 import { routes } from "./src/routes.ts";
 
 function htmlShell(entry: string): string {
@@ -14,9 +16,55 @@ function htmlShell(entry: string): string {
 </html>`;
 }
 
+function routeFileName(routePath: string): string {
+  if (routePath === "/") return "index.html";
+  if (routePath === "/404") return "404.html";
+  return `${routePath.slice(1)}/index.html`;
+}
+
+const generatedFiles: string[] = [];
+
 export default function pagesPlugin(): Plugin {
   return {
     name: "bunker-pages",
+    enforce: "pre",
+
+    config(_cfg, { command }): Partial<UserConfig> | null {
+      if (command !== "build") return null;
+
+      const root = process.cwd();
+      const input: Record<string, string> = {};
+
+      for (const route of routes) {
+        const fileName = routeFileName(route.path);
+        const filePath = path.join(root, fileName);
+        fs.mkdirSync(path.dirname(filePath), { recursive: true });
+        fs.writeFileSync(filePath, htmlShell(route.entry));
+        generatedFiles.push(filePath);
+        const key = route.path === "/" ? "main" : route.path.slice(1).replace(/\//g, "-");
+        input[key] = filePath;
+      }
+
+      return {
+        build: {
+          rollupOptions: { input },
+        },
+      };
+    },
+
+    closeBundle() {
+      const dirs = new Set<string>();
+      for (const f of generatedFiles) {
+        try { fs.unlinkSync(f); } catch {}
+        dirs.add(path.dirname(f));
+      }
+      for (const d of dirs) {
+        if (d !== process.cwd()) {
+          try { fs.rmdirSync(d); } catch {}
+        }
+      }
+      generatedFiles.length = 0;
+    },
 
     configureServer(server) {
       server.middlewares.use((_req: Connect.IncomingMessage, res: import("node:http").ServerResponse, next: Connect.NextFunction) => {
@@ -45,52 +93,6 @@ export default function pagesPlugin(): Plugin {
 
         next();
       });
-    },
-
-    resolveId(id) {
-      for (const route of routes) {
-        const fileName =
-          route.path === "/"
-            ? "index.html"
-            : route.path === "/404"
-              ? "404.html"
-              : `${route.path.slice(1)}/index.html`;
-        if (id === fileName || id === `/${fileName}`) {
-          return id;
-        }
-      }
-      return null;
-    },
-
-    load(id) {
-      for (const route of routes) {
-        const fileName =
-          route.path === "/"
-            ? "index.html"
-            : route.path === "/404"
-              ? "404.html"
-              : `${route.path.slice(1)}/index.html`;
-        if (id === fileName || id === `/${fileName}`) {
-          return htmlShell(route.entry);
-        }
-      }
-      return null;
-    },
-
-    generateBundle() {
-      for (const route of routes) {
-        const fileName =
-          route.path === "/"
-            ? "index.html"
-            : route.path === "/404"
-              ? "404.html"
-              : `${route.path.slice(1)}/index.html`;
-        this.emitFile({
-          type: "asset",
-          fileName,
-          source: htmlShell(route.entry),
-        });
-      }
     },
   };
 }
