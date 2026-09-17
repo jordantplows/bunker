@@ -229,7 +229,7 @@ a:hover { color: var(--text-bright); border-color: var(--text-bright); }
 /* ── Filter tabs (AI Models) ── */
 .filters {
   display: flex;
-  gap: 20px;
+  gap: 8px;
   padding: 24px 0;
   border-bottom: 1px solid var(--rule);
   font-family: 'IBM Plex Mono', monospace;
@@ -237,18 +237,36 @@ a:hover { color: var(--text-bright); border-color: var(--text-bright); }
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  flex-wrap: wrap;
 }
 .filters button {
   background: none;
-  border: none;
+  border: 1px solid var(--rule);
   font: inherit;
   color: var(--text-dim);
   cursor: pointer;
-  padding: 0;
-  transition: color 0.15s;
+  padding: 8px 16px;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
 }
-.filters button:hover { color: var(--text-bright); }
-.filters button.active { color: var(--text-bright); }
+.filters button:hover { color: var(--text-bright); border-color: var(--text-bright); }
+.filters button.active { color: #fff; background: var(--text-bright); border-color: var(--text-bright); }
+.model-count {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--text-dim);
+  padding: 16px 0 0;
+}
+.no-results {
+  padding: 80px 0;
+  text-align: center;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--text-dim);
+  display: none;
+}
 
 /* ── Model cards ── */
 .model-list { padding: 0; }
@@ -368,23 +386,24 @@ a:hover { color: var(--text-bright); border-color: var(--text-bright); }
   font-weight: 500;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  padding: 10px 20px;
+  padding: 12px 24px;
   cursor: pointer;
-  transition: background 0.15s, color 0.15s;
+  transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.1s;
   white-space: nowrap;
   border: none;
 }
+.btn:active { transform: scale(0.97); }
 .btn-primary {
   background: var(--forest);
   color: #fff;
 }
-.btn-primary:hover { background: var(--text-bright); }
+.btn-primary:hover { background: #1e4a19; }
 .btn-secondary {
   background: none;
   color: var(--text-bright);
   border: 1px solid var(--rule);
 }
-.btn-secondary:hover { border-color: var(--text-bright); }
+.btn-secondary:hover { border-color: var(--text-bright); background: rgba(17,17,17,0.03); }
 
 /* ── 404 ── */
 .four-oh-four {

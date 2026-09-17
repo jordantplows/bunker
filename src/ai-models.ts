@@ -20,6 +20,8 @@ mount({
     <button data-filter="imaging">Imaging</button>
   </div>
 
+  <div class="model-count" id="model-count">Showing 6 models</div>
+  <div class="no-results" id="no-results">No models in this category yet.</div>
   <div class="model-list" id="model-list">
 
     <!-- BunkerFold-3 -->
@@ -286,15 +288,28 @@ state: active_regulatory</div>
 
 const buttons = document.querySelectorAll<HTMLButtonElement>(".filters button");
 const cards = document.querySelectorAll<HTMLElement>(".model-card");
+const countEl = document.getElementById("model-count");
+const noResults = document.getElementById("no-results");
+
+function updateFilter(filter: string | undefined): void {
+  let visible = 0;
+  cards.forEach((card) => {
+    const show = filter === "all" || card.dataset.category === filter;
+    card.style.display = show ? "" : "none";
+    if (show) visible++;
+  });
+  if (countEl) {
+    countEl.textContent = `Showing ${visible} model${visible !== 1 ? "s" : ""}`;
+  }
+  if (noResults) {
+    noResults.style.display = visible === 0 ? "block" : "none";
+  }
+}
 
 buttons.forEach((btn) => {
   btn.addEventListener("click", () => {
     buttons.forEach((b) => b.classList.remove("active"));
     btn.classList.add("active");
-    const filter = btn.dataset.filter;
-    cards.forEach((card) => {
-      card.style.display =
-        filter === "all" || card.dataset.category === filter ? "" : "none";
-    });
+    updateFilter(btn.dataset.filter);
   });
 });
