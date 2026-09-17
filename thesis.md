@@ -3,7 +3,7 @@ Title: Nobody dies early
 Live to a healthy 100 years of age.
 
 
-We are first starting with a deep focus on autonomous labs and exploratory robotics. Robots that aren’t just completing a prompt for a specific task or drug discovery but also conducting experiments beyond the initial prompt. 
+Bunkers current mission accelerate science with autonomous labs and exploratory robotics. Robots that aren’t just completing a prompt for a specific task or drug discovery but also conducting experiments beyond the initial prompt. 
 
 This is critical for the acceleration of science and medicine. If we are going to extend all of human life to the age of 100. 
 
