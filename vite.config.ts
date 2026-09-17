@@ -34,6 +34,10 @@ export default defineConfig({
       input: {
         main: resolve(import.meta.dirname, "index.html"),
         "ai-models": resolve(import.meta.dirname, "ai-models/index.html"),
+        privacy: resolve(import.meta.dirname, "privacy/index.html"),
+        terms: resolve(import.meta.dirname, "terms/index.html"),
+        careers: resolve(import.meta.dirname, "careers/index.html"),
+        contact: resolve(import.meta.dirname, "contact/index.html"),
         "404": resolve(import.meta.dirname, "404.html"),
       },
     },
