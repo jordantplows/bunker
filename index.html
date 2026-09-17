@@ -3,244 +3,202 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Bunker is an AI Biotech Longevity Company focused on extending all of humanity to a guaranteed healthy 100 years of age.">
+<meta name="description" content="Bunker is an AI Biotech Longevity Company building autonomous labs to extend all of humanity to a healthy 100 years of age.">
 <meta name="author" content="Jordan Plows">
-<title>Bunker — Nobody Dies Early</title>
+<title>Bunker Longevity</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Inter+Tight:wght@800;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+  :root {
+    --bg: #0C0C0B;
+    --text: rgba(255,255,255,0.75);
+    --text-bright: #fff;
+    --text-dim: rgba(255,255,255,0.38);
+    --accent: #7ECBCE;
+    --rule: rgba(255,255,255,0.06);
+    --glow: rgba(126,203,206,0.08);
+  }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
-    background: #F5F4F0;
-    background-image: radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px);
-    background-size: 24px 24px;
-    color: #3A3836;
+    background: var(--bg);
+    color: var(--text);
     font-family: 'Newsreader', Georgia, serif;
-    font-size: 20px;
-    line-height: 1.8;
+    font-size: 19px;
+    line-height: 1.9;
     -webkit-font-smoothing: antialiased;
   }
 
-  .container {
-    max-width: 720px;
+  .page {
+    max-width: 640px;
     margin: 0 auto;
     padding: 0 32px;
   }
 
   a {
-    color: #1C1B18;
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 3px;
-    transition: color 0.15s;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(126,203,206,0.3);
+    transition: border-color 0.15s, color 0.15s;
   }
-  a:hover { color: #8A8780; }
+  a:hover {
+    color: var(--text-bright);
+    border-color: var(--text-bright);
+  }
 
-  /* Hero */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 0 32px;
-    position: relative;
+  /* Masthead */
+  .masthead {
+    padding: 140px 0 100px;
+    border-bottom: 1px solid var(--rule);
   }
-  h1 {
+  .masthead h1 {
     font-family: 'Inter Tight', Helvetica, sans-serif;
     font-weight: 900;
-    font-size: clamp(56px, 11vw, 160px);
+    font-size: clamp(48px, 10vw, 120px);
     line-height: 0.9;
     letter-spacing: -0.05em;
-    color: #1C1B18;
-    text-align: center;
-    transition: color 0.05s linear;
-    animation: hero-enter 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+    color: var(--text-bright);
+    animation: fade-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
   }
-  .hero-sub {
-    font-size: clamp(17px, 2.2vw, 22px);
-    line-height: 1.65;
-    color: #7A7774;
-    text-align: center;
-    max-width: 500px;
-    margin-top: 36px;
-    animation: hero-sub-enter 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
-  }
-  @keyframes hero-enter {
-    from { opacity: 0; transform: translateY(40px) scale(0.97); }
-  }
-  @keyframes hero-sub-enter {
-    from { opacity: 0; transform: translateY(20px); }
-  }
-  .scroll-hint {
-    position: absolute;
-    bottom: 36px;
-    left: 50%;
-    animation: scroll-bob 2.5s ease-in-out infinite;
-  }
-  .scroll-hint span {
-    display: block;
-    width: 16px;
-    height: 16px;
-    border-right: 1.5px solid rgba(0,0,0,0.15);
-    border-bottom: 1.5px solid rgba(0,0,0,0.15);
-    transform: translateX(-50%) rotate(45deg);
-  }
-  @keyframes scroll-bob {
-    0%, 100% { opacity: 0.25; transform: translateX(-50%) translateY(0); }
-    50% { opacity: 0.5; transform: translateX(-50%) translateY(6px); }
-  }
-
-  /* Section label — monospace accent */
-  .section-label {
+  .masthead .lede {
+    margin-top: 28px;
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
+    font-size: 14px;
     font-weight: 500;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: rgba(0,0,0,0.3);
-    margin-bottom: 24px;
+    color: var(--accent);
+    animation: fade-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+  }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(24px); }
   }
 
-  /* Body prose */
-  .section-body {
-    padding: 80px 0;
+  /* Article body */
+  .article {
+    padding: 64px 0 0;
   }
-  .section-body p {
+  .article p {
     margin-bottom: 28px;
-    color: #5A5854;
-  }
-  .section-body p:last-child {
-    margin-bottom: 0;
   }
 
-  /* Statement — big bold text */
-  .statement-text {
+  /* Pull quote */
+  .pull {
     font-family: 'Inter Tight', Helvetica, sans-serif;
     font-weight: 900;
-    font-size: clamp(36px, 7vw, 72px);
-    line-height: 1.06;
-    letter-spacing: -0.035em;
-    color: #1C1B18;
+    font-size: clamp(28px, 5.5vw, 52px);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--text-bright);
+    padding: 52px 0;
+    margin: 32px 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    position: relative;
   }
-  .section-statement {
-    padding: 100px 0;
-  }
-
-  /* Dark statement — inverted section */
-  .section-dark {
-    background: #1C1B18;
-    background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
-    background-size: 24px 24px;
-    padding: 120px 0;
-  }
-  .section-dark .section-label {
-    color: rgba(255,255,255,0.25);
-  }
-  .section-dark .statement-text {
-    color: #F5F4F0;
-  }
-  .section-dark p {
-    color: rgba(255,255,255,0.5);
+  .pull::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 48px;
+    height: 1px;
+    background: var(--accent);
   }
 
-  /* Contact */
-  .section-contact {
-    padding: 80px 0;
-    text-align: center;
+  /* Rule */
+  .rule {
+    height: 1px;
+    background: var(--rule);
+    margin: 48px 0;
+    position: relative;
   }
-  .section-contact a {
+  .rule::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 48px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  /* Colophon */
+  .colophon {
+    padding: 56px 0 40px;
+    border-top: 1px solid var(--rule);
+    margin-top: 48px;
+  }
+  .colophon a {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 500;
     letter-spacing: 0.02em;
-    color: #1C1B18;
-  }
-  .section-contact a:hover {
-    color: #8A8780;
   }
 
   /* Footer */
-  footer {
-    padding: 0 32px 48px;
-    text-align: center;
+  .footer {
+    padding: 0 0 56px;
     font-family: 'IBM Plex Mono', monospace;
     font-size: 11px;
     font-weight: 400;
     letter-spacing: 0.06em;
-    color: rgba(0,0,0,0.2);
+    color: var(--text-dim);
   }
 
   /* Scroll reveal */
   .reveal {
     opacity: 0;
-    transform: translateY(28px);
+    transform: translateY(20px);
     transition: opacity 0.8s ease, transform 1s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .reveal.visible {
     opacity: 1;
     transform: translateY(0);
   }
-  .reveal-delay-1 { transition-delay: 0.1s; }
-  .reveal-delay-2 { transition-delay: 0.2s; }
 
   @media (prefers-reduced-motion: reduce) {
-    h1 { transition: none; animation: none; }
-    .hero-sub { animation: none; }
-    .scroll-hint { animation: none; opacity: 0.3; }
+    .masthead h1, .masthead .lede { animation: none; }
     .reveal { opacity: 1; transform: none; transition: none; }
   }
 </style>
 </head>
 <body>
 
-<section class="hero">
-  <h1>Nobody dies early</h1>
-  <p class="hero-sub">Bunker is an AI Biotech Longevity Company focused on extending all of humanity to a guaranteed healthy 100 years of age.</p>
-  <div class="scroll-hint" aria-hidden="true"><span></span></div>
-</section>
+<div class="page">
 
-<section class="section-body">
-  <div class="container">
-    <div class="section-label reveal">The Mission</div>
-    <p class="reveal reveal-delay-1">We are first starting with a deep focus on autonomous labs and exploratory robotics. Robots that aren't just completing a prompt for a specific task or drug discovery but also conducting experiments beyond the initial prompt.</p>
-    <p class="reveal reveal-delay-2">This is critical for the acceleration of science and medicine. If we are going to extend all of human life to the age of 100, science has to be fully autonomous and now we need the largest Manhattan Project on planet earth giving people access to the most powerful interfaces.</p>
-  </div>
-</section>
+  <header class="masthead">
+    <h1>Nobody dies early</h1>
+    <p class="lede">Live to a healthy 100 years of age.</p>
+  </header>
 
-<section class="section-dark">
-  <div class="container">
-    <div class="section-label reveal">Why We Exist</div>
-    <p class="statement-text reveal reveal-delay-1">Imagine if disease didn't exist.</p>
-    <p class="reveal reveal-delay-2" style="margin-top: 40px; max-width: 560px;">The mission for Bunker is to eradicate all disease on planet earth. However, assuming we can do this on our own would be extremely arrogant. This will be a global effort, to defend our species, remove the terms "disease" or "illness" from the vocabulary of an entire generation and accelerate science.</p>
-  </div>
-</section>
+  <article class="article">
+    <p class="reveal">We are first starting with a deep focus on autonomous labs and exploratory robotics. Robots that aren't just completing a prompt for a specific task or drug discovery but also conducting experiments beyond the initial prompt.</p>
 
-<section class="section-statement">
-  <div class="container">
-    <div class="section-label reveal">Beyond the Labs</div>
-    <p class="statement-text reveal reveal-delay-1">Democratize science.</p>
-  </div>
-</section>
+    <p class="reveal">This is critical for the acceleration of science and medicine. If we are going to extend all of human life to the age of 100, science has to be fully autonomous and now we need the largest Manhattan Project on planet earth giving people access to the most powerful interfaces.</p>
 
-<section class="section-body" style="padding-top: 0;">
-  <div class="container">
+    <div class="pull reveal">Imagine if disease didn't exist.</div>
+
+    <p class="reveal">The mission for Bunker is to eradicate all disease on planet earth. However, assuming we can do this on our own would be extremely arrogant. This will be a global effort, to defend our species, remove the terms "disease" or "illness" from the vocabulary of an entire generation and accelerate science.</p>
+
+    <div class="pull reveal">Beyond the Labs.</div>
+
     <p class="reveal">We are not an autonomous lab geared towards lab workers and universities. Under strict guidance, adherence and governance from the United States government and adjoining bodies, we attempt to democratize science. This means that the direction of Bunker doesn't just seek to unlock biological possibilities.</p>
-    <p class="reveal reveal-delay-1">Bunker seeks to enable discoveries across all modalities of science that were previously locked up to those with a degree, inside a university or with money. Advancing progress in drug discovery, quantum mechanics, semi-conductors and robotics.</p>
-  </div>
-</section>
 
-<section class="section-contact">
-  <div class="container">
-    <a href="mailto:hello@bunkerbio.com" class="reveal">hello@bunkerbio.com</a>
-  </div>
-</section>
+    <p class="reveal">Bunker seeks to enable discoveries across all modalities of science that were previously locked up to those with a degree, inside a university or with money. Advancing progress in drug discovery, quantum mechanics, semi-conductors and robotics.</p>
+  </article>
 
-<footer>
-  <span>&copy; Bunker Research</span>
-</footer>
+  <div class="colophon">
+    <a href="mailto:hello@bunkerbio.com">hello@bunkerbio.com</a>
+  </div>
+
+  <div class="footer">
+    <span>&copy; Bunker Research</span>
+  </div>
+
+</div>
 
 <script type="module" src="/src/main.ts"></script>
 </body>
