@@ -1,4 +1,4 @@
-import{n as e}from"./layout-BZDOoLye.js";e({title:`Careers — Bunker`,description:`Join Bunker Longevity. We're building autonomous labs to extend all of humanity to a healthy 100 years of age.`,content:`
+import{n as e}from"./layout-DsrfhhIF.js";e({title:`Careers — Bunker`,description:`Join Bunker Longevity. We're building autonomous labs to extend all of humanity to a healthy 100 years of age.`,content:`
   <header class="page-header reveal">
     <h1>Careers</h1>
     <p class="subtitle">We're building autonomous labs to eradicate disease. That mission requires extraordinary people across science, engineering, and operations.</p>

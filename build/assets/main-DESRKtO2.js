@@ -1,11 +1,4 @@
-import { mount } from "./layout";
-
-mount({
-  title: "Bunker Longevity",
-  description:
-    "Bunker is an AI Biotech Longevity Company building autonomous labs to extend all of humanity to a healthy 100 years of age.",
-  maxWidth: 860,
-  content: `
+import{n as e}from"./layout-DsrfhhIF.js";e({title:`Bunker Longevity`,description:`Bunker is an AI Biotech Longevity Company building autonomous labs to extend all of humanity to a healthy 100 years of age.`,maxWidth:860,content:`
   <header class="hero hero--home" id="hero">
     <h1 class="reveal">Live to 100</h1>
     <p class="lede reveal">Upload a molecule. Pick an assay. Get results.</p>
@@ -120,5 +113,4 @@ mount({
     <div class="pull reveal">Start running experiments.</div>
     <p class="reveal">Bunker is currently in early access. Request an invitation and our team will set up your private workspace within 48 hours.</p>
     <a class="btn btn-primary reveal" href="mailto:hello@bunkerbio.com">Request Access</a>
-  </section>`,
-});
+  </section>`});

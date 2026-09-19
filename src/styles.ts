@@ -689,7 +689,147 @@ a:hover { color: var(--text-bright); border-color: var(--text-bright); }
 }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
+/* ── How It Works ── */
+.how-it-works {
+  padding: 56px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.how-it-works > p { margin-bottom: 32px; }
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.step-card {
+  background: var(--bg);
+  padding: 32px 24px;
+}
+.step-number {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--forest);
+  margin-bottom: 12px;
+}
+.step-title {
+  font-family: 'Inter Tight', Helvetica, sans-serif;
+  font-weight: 900;
+  font-size: 20px;
+  letter-spacing: -0.02em;
+  color: var(--text-bright);
+  margin-bottom: 12px;
+}
+.step-desc {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text);
+  margin-bottom: 0;
+}
+.step-formats {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+.format-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--forest);
+  border: 1px solid var(--forest-dim);
+  padding: 4px 10px;
+}
+
+/* ── Assay Catalog ── */
+.assay-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  margin-top: 32px;
+}
+.assay-category {
+  background: var(--bg);
+  padding: 28px 24px;
+}
+.assay-cat-header {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--forest);
+  margin-bottom: 14px;
+}
+.assay-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.assay-list li {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+/* ── Security Grid ── */
+.security-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  margin-top: 32px;
+}
+.security-item {
+  background: var(--bg);
+  padding: 28px 24px;
+}
+.security-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-bright);
+  margin-bottom: 10px;
+}
+.security-item p {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text);
+}
+
+/* ── CTA Section ── */
+.cta-section {
+  padding: 64px 0;
+  border-bottom: 1px solid var(--rule);
+  text-align: center;
+}
+.cta-section p {
+  margin-bottom: 32px;
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.cta-section .btn {
+  display: inline-block;
+  border-bottom: none;
+}
+
 /* ── Responsive ── */
+@media (max-width: 700px) {
+  .steps-grid { grid-template-columns: 1fr; }
+  .assay-grid { grid-template-columns: 1fr; }
+  .security-grid { grid-template-columns: 1fr; }
+}
 @media (max-width: 560px) {
   .model-header { flex-direction: column; }
   .example-body { grid-template-columns: 1fr; }

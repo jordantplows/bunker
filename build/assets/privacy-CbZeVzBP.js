@@ -1,4 +1,4 @@
-import{n as e}from"./layout-BZDOoLye.js";e({title:`Privacy Policy — Bunker`,description:`Privacy Policy for Bunker Longevity, Inc.`,content:`
+import{n as e}from"./layout-DsrfhhIF.js";e({title:`Privacy Policy — Bunker`,description:`Privacy Policy for Bunker Longevity, Inc.`,content:`
   <header class="page-header reveal">
     <h1>Privacy Policy</h1>
     <p class="updated">Last updated — September 2026</p>

@@ -1,4 +1,4 @@
-import{n as e}from"./layout-BZDOoLye.js";e({title:`Terms of Service — Bunker`,description:`Terms of Service for Bunker Longevity, Inc.`,content:`
+import{n as e}from"./layout-DsrfhhIF.js";e({title:`Terms of Service — Bunker`,description:`Terms of Service for Bunker Longevity, Inc.`,content:`
   <header class="page-header reveal">
     <h1>Terms of Service</h1>
     <p class="updated">Last updated — September 2026</p>

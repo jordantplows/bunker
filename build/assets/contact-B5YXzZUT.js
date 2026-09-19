@@ -1,4 +1,4 @@
-import{n as e}from"./layout-BZDOoLye.js";e({title:`Contact — Bunker`,description:`Get in touch with Bunker Longevity.`,content:`
+import{n as e}from"./layout-DsrfhhIF.js";e({title:`Contact — Bunker`,description:`Get in touch with Bunker Longevity.`,content:`
   <header class="page-header reveal">
     <h1>Contact</h1>
     <p class="subtitle">For partnerships, press, research inquiries, or anything else — we'd like to hear from you.</p>
